@@ -1,0 +1,5 @@
+./idea/*
+./commands.txt
+./Dockerfile
+./formula-venv/*
+*/__pycache__/*
