@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Formula 1 2017</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <link href="{% get_static_prefix %}css/reset.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/animate.css" rel="stylesheet">
+
+    <script src="{% get_static_prefix %}js/jquery-2.1.4.js"></script>
+    <script src="{% get_static_prefix %}js/parallax.min.js"></script>
+    <script src="{% get_static_prefix %}js/jquery.aniview.js"></script>
+    <script>
+      $(function(){
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
+          $('#ios-notice').removeClass('hidden');
+          $('.parallax-container').height( $(window).height() * 0.5 | 0 );
+        } else {
+          $(window).resize(function(){
+            var parallaxHeight = Math.max($(window).height() * 0.7, 200) | 0;
+            $('.parallax-container').height(parallaxHeight);
+          }).trigger('resize');
+        }
+      });
+
+    </script>
+    <script>
+        var options = {
+            animateThreshold: 200,
+            scrollPollInterval: 20
+        }
+        $(document).ready(function(){
+            $('.aniview').AniView(options);
+    });
+    </script>
+  </head>
+
+  <body>
+
+
+    <div align="center" class="parallax-container" data-parallax="scroll" data-bleed="10" data-image-src="{% get_static_prefix %}img/Wallpaper.jpg" data-natural-width="1920" data-natural-height="1080">
+        <div class="content">
+            <h1><span class="highlight">Formula 1 2017 Results & Stats</span></h1>
+        </div>
+    </div>
+
+    <div align="center" class="parallax-container" data-parallax="scroll" data-bleed="10" data-image-src="{% get_static_prefix %}img/GPimg-2.jpg" data-natural-width="1920" data-natural-height="1080">
+        <div class="content">
+            <h1><span class="highlight aniview" data-av-animation="fadeInDown">Australian Grand Prix</span></h1>
+            <table class="results-table aniview" data-av-animation="fadeInUp">
+              <tr>
+                <th>Driver</th>
+                <th>Laps completed</th>
+                <th>Race time</th>
+              </tr>
+              {% for race in race_list %}
+                {% if race.track.name == "Melbourne Circut" %}
+                  <tr>
+                    <td>{{ race.driver.name }}</td>
+                    <td>{{ race.laps }}</td>
+                    <td>{{ race.time|default:"" }}</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div align="center" class="parallax-container" data-parallax="scroll" data-bleed="10" data-image-src="{% get_static_prefix %}img/GPimg-3.jpg" data-natural-width="1920" data-natural-height="1280">
+        <div class="content">
+            <h1><span class="highlight aniview" data-av-animation="fadeInDown">Chinese Grand Prix</span></h1>
+            <table class="results-table aniview" data-av-animation="fadeInUp">
+              <tr>
+                <th>Driver</th>
+                <th>Laps completed</th>
+                <th>Race time</th>
+              </tr>
+              {% for race in race_list %}
+                {% if race.track.name == "Shanghai International Circut" %}
+                  <tr>
+                    <td>{{ race.driver.name }}</td>
+                    <td>{{ race.laps }}</td>
+                    <td>{{ race.time|default:"" }}</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div align="center" class="parallax-container" data-parallax="scroll" data-bleed="10" data-image-src="{% get_static_prefix %}img/GPimg-4.jpg" data-natural-width="1920" data-natural-height="1080">
+        <div class="content">
+            <h1><span class="highlight aniview" data-av-animation="fadeInDown">Bahrain Grand Prix</span></h1>
+            <table class="results-table aniview" data-av-animation="fadeInUp">
+              <tr>
+                <th>Driver</th>
+                <th>Laps completed</th>
+                <th>Race time</th>
+              </tr>
+              {% for race in race_list %}
+                {% if race.track.name == "Bahrain International Circut" %}
+                  <tr>
+                    <td>{{ race.driver.name }}</td>
+                    <td>{{ race.laps }}</td>
+                    <td>{{ race.time|default:"" }}</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+        </div>
+    </div>
+
+  </body>
+</html>
