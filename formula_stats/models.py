@@ -29,19 +29,29 @@ class Track(models.Model):
         return self.name
 
 
+class Event(models.Model):
+    name = models.CharField(max_length=50, primary_key=True)
+    event_date = models.DateField()
+    track = models.ForeignKey(Track, on_delete=models.CASCADE)
+    photo = models.ImageField()
+
+    def __str__(self):
+        return self.name
+
+
 class Race(models.Model):
     id = models.IntegerField(primary_key=True)  # ????
-    track = models.ForeignKey(Track, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     laps = models.IntegerField(default=0)
     time = models.DurationField(null=True, blank=True)
 
     class Meta:
-        unique_together = (("track", "driver"), ("track", "driver", "time"),)
+        unique_together = (("event", "driver"), ("event", "driver", "time"),)
 
     def __str__(self):
-        return "Race: " + self.track.name + ' - ' + self.driver.number.__str__()
+        return "Race: " + self.event.name + ' - ' + self.driver.number.__str__()
 
 
 # AllPodiums view

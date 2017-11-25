@@ -3,6 +3,7 @@
 image_name=formula_image
 container_name=pg_formula
 commands_for_sql=./db-setup-commands.sql
+pycharm_script="/usr/local/bin/charm"
 prop_file="/tmp/properties_formula.tmp"
 termination="sudo docker stop $container_name"
 
@@ -12,7 +13,6 @@ GREEN='\033[1;32m'
 NC='\033[0m' # No color
 
 
-
 # Launching docker container
 if sudo docker start $container_name 1> /dev/null # -d Background launch
 then
@@ -20,11 +20,21 @@ then
   port=$(sudo docker ps | grep $container_name | grep ":[0-9][0-9]*->" -o | grep "[0-9][0-9]*" -o) # Find port adress
   host=$(sudo docker ps | grep $container_name | grep "[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*" -o) # Find host adress
   echo "$host\n$port" > $prop_file
+  echo "$port"
 else
   echo -e "${RED}ERROR: Cannot launch docker! Exiting!${NC}"
   $termination 1> /dev/null
   rm $prop_file 2> /dev/null
   exit 1
+fi
+
+
+# Launching PyCharm
+if $pycharm_script
+then
+  echo -e "${GREEN}[2] PyCharm was started...${NC}"
+else
+  echo -e "${YELLOW}WARNING: Cannot start PyCharm!${NC}"
 fi
 
 
