@@ -10,10 +10,18 @@
   vertical-align: middle;
 }
 
-.highlight {
+.main-title {
   box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.75);
   background-color: rgba(0, 0, 0, 0.75);
   font-size: 75px;
+  font-family: Arial Narrow, Arial, sans-serif;
+  color: #ffffff;
+}
+
+.highlight {
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.75);
+  font-size: 65px;
   font-family: Arial Narrow, Arial, sans-serif;
   color: #ffffff;
 }
@@ -28,6 +36,7 @@
 }
 
 #event-table td, #event-table th {
+    border-bottom: 1px solid rgba(83, 83, 83, 0.95);
     padding: 5px 10px;
 }
 
@@ -43,8 +52,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.89);
-    color: white;
+    background-color: rgba(21, 21, 21, 0.73);
 }
 
 ul.nav-bar {
@@ -77,4 +85,52 @@ li.nav-element a {
 
 li.nav-element a:hover {
     background-color: rgba(28, 28, 28, 0.6);
+}
+
+#drivers-body {
+    clear: both;
+      background: url(../img/MinWallpaper.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+div.driver-table {
+    margin-top: 7%;
+    margin-bottom: 3%;
+}
+
+#driver-row {
+    padding: 10px 10px;
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+#driver-cell {
+
+
+    font-size: 22px;
+  font-family: Arial Narrow, Arial, sans-serif;
+    font-weight: bold;
+  color: #000000;
+}
+
+#driver-cell:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+}
+
+img {
+    float:left;
+}
+
+#teams-body {
+    clear: both;
+      background: url(../img/TeamWallpaper.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }

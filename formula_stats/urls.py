@@ -6,5 +6,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^drivers$', views.drivers, name='drivers'),
+    url(r'^teams$', views.teams, name='teams'),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico'), name='favicon'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

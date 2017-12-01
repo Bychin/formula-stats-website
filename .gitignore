@@ -1,5 +1,6 @@
-./idea/*
-./commands.txt
-./Dockerfile
-./formula-venv/*
+idea/*
+commands.txt
+Dockerfile
+formula-venv/*
 */__pycache__/*
+formula1_website/settings.py

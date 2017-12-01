@@ -19,13 +19,12 @@ create table formula_stats_track (
 );
 
 create table formula_stats_race (
-    id int primary key, -- remove
+    id int primary key, --primary key(track, driver),
     laps int,
     race_time interval null,
     driver int references formula_stats_driver,
     team varchar(16) references formula_stats_team,
     track varchar(50) references formula_stats_track,
-    --primary key(track, driver),
     unique(track, driver) -- remove
 );
 
@@ -98,7 +97,7 @@ insert into formula_stats_driver values ('Kimi Raikkonen',      7, 'drivers/Kimi
 insert into formula_stats_driver values ('Daniel Ricciardo',    3, 'drivers/DanielRicciardo.jpg'); --,  'Red Bull Racing');
 insert into formula_stats_driver values ('Max Verstappen',     33, 'drivers/MaxVerstappen.jpg'); --,    'Red Bull Racing');
 insert into formula_stats_driver values ('Sergio Perez',       11, 'drivers/SergioPerez.jpg'); --,      'Force India');
-insert into formula_stats_driver values ('Esteban Ocon',       31, 'drivers/drivers/EstebanOcon.jpg'); --,      'Force India');
+insert into formula_stats_driver values ('Esteban Ocon',       31, 'drivers/EstebanOcon.jpg'); --,      'Force India');
 insert into formula_stats_driver values ('Felipe Massa',       19, 'drivers/FelipeMassa.jpg'); --,      'Williams');
 insert into formula_stats_driver values ('Lance Stroll',       18, 'drivers/LanceStroll.jpg'); --,      'Williams');
 insert into formula_stats_driver values ('Pierre Gasly',       10, 'drivers/PierreGasly.jpg'); --,      'Toro Rosso');

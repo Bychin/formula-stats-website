@@ -3,7 +3,6 @@ from django.db import models
 
 class Driver(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    # team = models.ForeignKey('Team', on_delete=models.CASCADE)  # remove?
     number = models.IntegerField(primary_key=True)
     photo = models.ImageField()
 

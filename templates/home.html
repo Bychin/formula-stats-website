@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'> <!--delete this??-->
 
     <link href="{% get_static_prefix %}css/reset.css" rel="stylesheet">
     <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
@@ -29,8 +29,8 @@
     </script>
     <script>
         var options = {
-            animateThreshold: 200,
-            scrollPollInterval: 20
+            animateThreshold: 150,
+            scrollPollInterval: 10
         }
         $(document).ready(function(){
             $('.aniview').AniView(options);
@@ -42,19 +42,18 @@
 
   <body>
     <div id="top" align="center" class="parallax-container" data-parallax="scroll" data-bleed="10" data-image-src="{% get_static_prefix %}img/Wallpaper.jpg" data-natural-width="1920" data-natural-height="1080">
-            <ul class="nav-bar" align="left">
-                <li class="nav-element"><img src="{% get_static_prefix %}img/f1_logo.svg" width="110" height="45"></li>
-                <li class="nav-element"><a href="#top">Home</a></li>
-                <li class="nav-element"><a href="#news">Drivers</a></li>
-                <li class="nav-element"><a href="#contact">Teams</a></li>
-                <li class="nav-element"><a href="#about">Stats</a></li>
-            </ul>
-
+        <ul class="nav-bar" align="left">
+            <li class="nav-element"><img src="{% get_static_prefix %}img/f1_logo.svg" width="110" height="45"></li>
+            <li class="nav-element"><a href="#top">Home</a></li>
+            <li class="nav-element"><a href="{% url 'drivers' %}">Drivers</a></li>
+            <li class="nav-element"><a href="#contact">Teams</a></li>
+            <li class="nav-element"><a href="#about">Stats</a></li>
+        </ul>
         <div class="content">
-            <h1><span class="highlight">Formula 1 2017 Results & Stats</span></h1>
+        <h1><span class="main-title">Formula 1 2017 Results & Stats</span></h1>
         </div>
-
     </div>
+
     {% for event in event_list %}
 
     <div align="center" class="parallax-container" data-parallax="scroll" data-bleed="10" data-image-src="{% get_media_prefix %}{{ event.photo }}" data-natural-width="1920" data-natural-height="1080">
