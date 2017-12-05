@@ -132,5 +132,18 @@ img {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
 
+#stats-body {
+    clear: both;
+      background: url(../img/StatsWallpaper.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+div.stats-table {
+    margin-top: 14%;
+    margin-bottom: -8%;
 }

@@ -5,7 +5,7 @@ create table formula_stats_team (
 );
 
 create table formula_stats_driver (
-    driver_number int primary key,
+    number int primary key,
     name varchar(30) unique,
     photo varchar(100)
 );
@@ -28,11 +28,11 @@ create table formula_stats_race (
     unique(track, driver) -- remove
 );
 
--- List track, time. driver's id and place for all race's podium places
+-- List track, time, driver's id and place for all race's podium places
 create view formula_stats_podiums as (
     with
     GetPlaces as (
-        select *, row_number() over (partition by track_id order by time asc)
+        select *, row_number() over (partition by event_id order by time asc)
             as row_id from formula_stats_race
     ),
     GetPodium as (
@@ -41,14 +41,14 @@ create view formula_stats_podiums as (
         order by time asc
     )
     select 
-        row_number() over (order by track_id, row_id) as id,
-        track_id, time, driver_id, row_id as place from GetPodium
+        row_number() over (order by event_id, row_id) as id,
+        event_id, time, driver_id, row_id as place from GetPodium
 );
 
-create view formula_stats_driver_podiums as (
+create view formula_stats_drivers_podiums as (
     with
     GetPlaces as (
-        select *, row_number() over (partition by track_id order by time asc)
+        select *, row_number() over (partition by event_id order by time asc)
             as row_id from formula_stats_race
     ),
     GetPodium as (
@@ -57,15 +57,15 @@ create view formula_stats_driver_podiums as (
         order by time asc
     )
     select driver_id, driver.name, count(1) as podiums from GetPodium
-    join formula_stats_driver driver on driver_id = driver.driver_number -- driver.number 
+    join formula_stats_driver driver on driver_id = driver.number
     group by driver_id, driver.name
     order by podiums desc
 );
 
-create view formula_stats_team_podiums as (
+create view formula_stats_teams_podiums as (
     with
     GetPlaces as (
-        select *, row_number() over (partition by track_id order by time asc)
+        select *, row_number() over (partition by event_id order by time asc)
             as row_id from formula_stats_race
     ),
     GetPodium as (
@@ -73,8 +73,9 @@ create view formula_stats_team_podiums as (
         where row_id < 4
         order by time asc
     )
-    select team_id, count(1) as podiums from GetPodium
-    group by team_id
+    select team_id, count(1) as podiums, team.color_code from GetPodium
+    join formula_stats_team team on team_id = team.name
+    group by team_id, team.color_code
     order by podiums desc
 );
 

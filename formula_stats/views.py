@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Race, Event, Driver, Team
+from .models import Race, Event, Driver, Team, MostSuccessfulDrivers, MostSuccessfulTeams
 
 
 #class HomeView(generic.ListView):
@@ -30,3 +30,8 @@ def teams(request):
 
 def team_profile(request, team_name):
     return render(request, 'team_profile.html', {'team_info': Team.objects.filter(name=team_name).all(),})
+
+
+def stats(request):
+    return render(request, 'stats.html', {'driver_stats': MostSuccessfulDrivers.objects.order_by('-podiums').all(),
+                                          'team_stats':  MostSuccessfulTeams.objects.order_by('-podiums').all()})

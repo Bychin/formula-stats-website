@@ -1,0 +1,126 @@
+dl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.60);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 1000px;
+  position: relative;
+  padding: 3%;
+}
+
+dt {
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  width: 100%;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 20px;
+
+}
+
+.text {
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  margin-left: 2%;
+  margin-top: 3px;
+  width: 17%;
+  padding-right: 3%;
+
+  background-color: rgba(255, 255, 255, 0.51);
+  position: absolute;
+  left: 0;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.percentage {
+  font-size: .8em;
+  line-height: 1;
+  text-transform: uppercase;
+  width: 80%;
+  margin-left: 20%;
+  height: 45px;
+  text-align: left;
+
+
+
+  background: -webkit-repeating-linear-gradient(left, #ddd, #ddd 1px, rgba(255, 255, 255, 0.51) 1px, rgba(255, 255, 255, 0.51) 10%);
+  background: repeating-linear-gradient(to right, #ddd, #ddd 1px, rgba(255, 255, 255, 0.51) 1px, rgba(255, 255, 255, 0.51) 10%);
+}
+.percentage:after {
+  content: "";
+  display: block;
+  background-color: #3d9970;
+  width: 50px;
+  margin-bottom: 10px;
+  height: 90%;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: background-color .3s ease;
+  transition: background-color .3s ease;
+  cursor: pointer;
+}
+.percentage:hover:after, .percentage:focus:after {
+  background-color: #aaa;
+}
+
+.percentage-1:after {
+  width: 10%;
+}
+
+.percentage-2:after {
+  width: 20%;
+}
+
+.percentage-3:after {
+  width: 30%;
+}
+
+.percentage-4:after {
+  width: 40%;
+}
+
+.percentage-5:after {
+  width: 50%;
+}
+
+.percentage-6:after {
+  width: 60%;
+}
+
+.percentage-7:after {
+  width: 70%;
+}
+
+.percentage-8:after {
+  width: 80%;
+}
+
+.percentage-9:after {
+  width: 90%;
+}
+
+.percentage-10:after {
+  width: 100%;
+}
+
+html, body {
+  height: 800px;
+  font-family: "fira-sans-2",sans-serif;
+  color: #333;
+}

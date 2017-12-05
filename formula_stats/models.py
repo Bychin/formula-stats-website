@@ -53,7 +53,7 @@ class Race(models.Model):
         return "Race: " + self.event.name + ' - ' + self.driver.number.__str__()
 
 
-# AllPodiums view
+# formula_stats_podiums view
 class Podium(models.Model):
     track = models.ForeignKey(Track, on_delete=models.DO_NOTHING)
     driver = models.ForeignKey(Driver, on_delete=models.DO_NOTHING)
@@ -61,15 +61,40 @@ class Podium(models.Model):
     place = models.IntegerField()
 
     class Meta:
-        db_table = 'formula_stats_allpodiums'
+        db_table = 'formula_stats_podiums'
         managed = False
 
     def __str__(self):
         return "Podiums view: " + self.track.name + ' ' + self.place.__str__()
 
 
-# Create view "MostSuccessfulDrivers" DONE
-# Create view "MostSuccessfulTeams" DONE
+# formula_stats_drivers_podiums view
+class MostSuccessfulDrivers(models.Model):
+    driver = models.ForeignKey(Driver, on_delete=models.DO_NOTHING, primary_key=True)
+    name = models.CharField(max_length=30, unique=True)
+    podiums = models.IntegerField()
+
+    class Meta:
+        db_table = 'formula_stats_drivers_podiums'
+        managed = False
+
+    def __str__(self):
+        return "MostSuccessfulDrivers view: " + self.driver.name + ' ' + self.podiums.__str__()
+
+
+# formula_stats_teams_podiums DONE
+class MostSuccessfulTeams(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, primary_key=True)
+    podiums = models.IntegerField()
+    color_code = models.CharField(max_length=10)
+
+    class Meta:
+        db_table = 'formula_stats_teams_podiums'
+        managed = False
+
+    def __str__(self):
+        return "MostSuccessfulTeams view: " + self.team.name + ' ' + self.podiums.__str__()
+
 
 # Create view "DriverPoints"
 # Create view "TeamPoints"
