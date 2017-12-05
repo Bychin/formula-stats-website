@@ -39,7 +39,7 @@
         <div class="driver-table">
             <div class="row" id="driver-row">
             {% for driver in driver_list %}
-                <a href="/{{ driver.name.split|join:"-"|lower }}" style="text-decoration:none">
+                <a href="/drivers/{{ driver.name.split|join:"-"|lower }}" style="text-decoration:none">
                 <div class="five columns" id="driver-cell">
                     <img src="{% get_media_prefix %}{{ driver.photo }}" width="260" height="260">
                     <br/>{{ driver.name }} - {{ driver.number }}

@@ -21,7 +21,9 @@ def drivers(request):
 
 
 def driver_profile(request, driver_name):
-    return render(request, 'driver_profile.html', {'driver_info': Driver.objects.filter(name=driver_name).all(),})
+    driver_name = str(driver_name)   # sergio-perez
+    true_name = ' '.join(driver_name.split('-')).title()  # Sergio Perez
+    return render(request, 'driver_profile.html', {'driver_info': Driver.objects.filter(name=true_name).all(), })
 
 
 def teams(request):
@@ -29,7 +31,10 @@ def teams(request):
 
 
 def team_profile(request, team_name):
-    return render(request, 'team_profile.html', {'team_info': Team.objects.filter(name=team_name).all(),})
+    driver_name = str(team_name)  # red-bull-racing
+    true_name = ' '.join(driver_name.split('-')).title()  # Red Bull Racing
+    print(true_name)
+    return render(request, 'team_profile.html', {'team_info': Team.objects.filter(name=true_name).all(), })
 
 
 def stats(request):

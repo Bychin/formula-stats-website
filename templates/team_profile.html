@@ -32,17 +32,17 @@
             <li class="nav-element"><img src="{% get_static_prefix %}img/f1_logo.svg" width="110" height="45"></li>
             <li class="nav-element"><a href="/">Home</a></li>
             <li class="nav-element"><a href="{% url 'drivers' %}">Drivers</a></li>
-            <li class="nav-element"><a href="#top">Teams</a></li>
+            <li class="nav-element"><a href="{% url 'teams' %}">Teams</a></li>
             <li class="nav-element"><a href="{% url 'stats' %}">Stats</a></li>
         </ul>
         <div class="content">
         <div class="team-table">
 
-            {% for team in team_list %}
+            {% for team in team_info %}
 
             <div class="row" id="team-row" data-color="{{ team.color_code }}">
 
-                <a href="/teams/{{ team.name.split|join:"-"|lower }}" style="text-decoration:none">
+                <a href="/{{ team.name.split|join:"-"|lower }}" style="text-decoration:none">
 
                     {{ team.name }}<img src="{% get_media_prefix %}{{ team.photo }}" width="750" height="400">
 
