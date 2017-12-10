@@ -7,21 +7,7 @@
 
     <link href="{% get_static_prefix %}css/reset.css" rel="stylesheet">
     <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
-    <link href="{% get_static_prefix %}css/animate.css" rel="stylesheet"> <!--delete this??-->
     <link href="{% get_static_prefix %}css/bootstrap-grid.css" rel="stylesheet">
-
-    <script src="{% get_static_prefix %}js/jquery-2.1.4.js"></script>
-    <script src="{% get_static_prefix %}js/jquery.aniview.js"></script> <!--delete this??-->
-
-    <script>
-        var options = {
-            animateThreshold: 150,
-            scrollPollInterval: 10
-        }
-        $(document).ready(function(){
-            $('.aniview').AniView(options);
-    });
-    </script>
 
     <title>All teams - Formula 1</title>
   </head>
@@ -40,15 +26,11 @@
 
             {% for team in team_list %}
 
-            <div class="row" id="team-row" data-color="{{ team.color_code }}">
-
-                <a href="/teams/{{ team.name.split|join:"-"|lower }}" style="text-decoration:none">
-
-                    {{ team.name }}<img src="{% get_media_prefix %}{{ team.photo }}" width="750" height="400">
-
-                </a>
-
-            </div>
+            <a href="/teams/{{ team.name.split|join:"-"|lower }}" style="text-decoration:none;">
+                <div class="row" id="team-row" data-color="{{ team.color_code }}">
+                    <img src="{% get_media_prefix %}{{ team.photo }}" width="750" height="400">{{ team.name }}
+                </div>
+            </a>
             {% endfor %}
 
         </div>

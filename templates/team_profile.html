@@ -7,23 +7,9 @@
 
     <link href="{% get_static_prefix %}css/reset.css" rel="stylesheet">
     <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
-    <link href="{% get_static_prefix %}css/animate.css" rel="stylesheet"> <!--delete this??-->
     <link href="{% get_static_prefix %}css/bootstrap-grid.css" rel="stylesheet">
 
-    <script src="{% get_static_prefix %}js/jquery-2.1.4.js"></script>
-    <script src="{% get_static_prefix %}js/jquery.aniview.js"></script> <!--delete this??-->
-
-    <script>
-        var options = {
-            animateThreshold: 150,
-            scrollPollInterval: 10
-        }
-        $(document).ready(function(){
-            $('.aniview').AniView(options);
-    });
-    </script>
-
-    <title>All teams - Formula 1</title>
+    <title>{{ team_info.name }} - Formula 1</title>
   </head>
 
   <body id="teams-body">
@@ -36,21 +22,48 @@
             <li class="nav-element"><a href="{% url 'stats' %}">Stats</a></li>
         </ul>
         <div class="content">
-        <div class="team-table">
+        <div class="driver-stat-cell">
+        <div class="row" id="driver-row">
 
-            {% for team in team_info %}
+            <img src="{% get_media_prefix %}{{ team_info.photo }}" width="600" height="300">
 
-            <div class="row" id="team-row" data-color="{{ team.color_code }}">
+            <div class="column">
+                <div class="highlight-driver">{{ team_info.name }}</div>
 
-                <a href="/{{ team.name.split|join:"-"|lower }}" style="text-decoration:none">
-
-                    {{ team.name }}<img src="{% get_media_prefix %}{{ team.photo }}" width="750" height="400">
-
-                </a>
-
+                <table id="driver-race-table">
+                    <tr>
+                        <th>Driver</th>
+                        <th>Races</th>
+                    </tr>
+                    {% for driver in team_drivers %}
+                    <tr>
+                        <td>{{ driver.name }}</td>
+                        <td>{{ driver.amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
-            {% endfor %}
-
+        </div>
+        <div class="row">
+            <table id="driver-race-table">
+                <tr>
+                    <th>Place</th>
+                    <th>Event</th>
+                    <th>Driver</th>
+                    <th>Laps</th>
+                    <th>Time</th>
+                </tr>
+                {% for race in driver_results %}
+                    <tr>
+                        <td>{{ race.row_id }}</td>
+                        <td>{{ race.event }}</td>
+                        <td>{{ race.driver }}</td>
+                        <td>{{ race.laps }}</td>
+                        <td>{{ race.time|default:"No time set" }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
         </div>
         </div>
     </div>

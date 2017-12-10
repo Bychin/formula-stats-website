@@ -32,7 +32,7 @@ create table formula_stats_race (
 create view formula_stats_podiums as (
     with
     GetPlaces as (
-        select *, row_number() over (partition by event_id order by time asc)
+        select *, row_number() over (partition by event_id order by time asc, laps desc, id)
             as row_id from formula_stats_race
     ),
     GetPodium as (
@@ -43,6 +43,47 @@ create view formula_stats_podiums as (
     select 
         row_number() over (order by event_id, row_id) as id,
         event_id, time, driver_id, row_id as place from GetPodium
+);
+
+
+-- Same as Race table but with positions in each event
+create view formula_stats_driver_races as (
+    with
+    GetPlaces as (
+        select *, row_number() over (partition by event_id order by time asc, laps desc, id)
+            as row_id from formula_stats_race
+    )
+    select
+        id, -- due to only one primary key in Django ORM restriction
+        event_id, laps, time, row_id, team_id, driver_id from GetPlaces
+);
+
+create view formula_stats_driver_teams as (
+    with
+    GetPlaces as (
+        select *, row_number() over (partition by event_id order by time asc, laps desc, id)
+            as row_id from formula_stats_race
+    ),
+    GetDriverTeams as (
+        select count(team_id) as amount, team_id, driver_id from GetPlaces
+        group by team_id, driver_id
+    )
+    select 
+        row_number() over (order by driver_id, amount) as id, -- due to only one primary key in Django ORM restriction
+        amount, team_id, driver_id from GetDriverTeams
+);
+
+create view formula_stats_team_drivers as (
+    with
+    GetDriverTeams as (
+        select count(team_id) as amount, team_id, driver_id from formula_stats_race
+        group by team_id, driver_id
+    )
+    select 
+        row_number() over (order by driver_id, amount) as id, -- due to only one primary key in Django ORM restriction
+        amount, team_id, D.name from GetDriverTeams
+    join formula_stats_driver D on driver_id = D.number
+
 );
 
 create view formula_stats_drivers_podiums as (

@@ -108,8 +108,6 @@ div.driver-table {
 }
 
 #driver-cell {
-
-
     font-size: 22px;
   font-family: Arial Narrow, Arial, sans-serif;
     font-weight: bold;
@@ -154,14 +152,58 @@ div.team-table {
 }
 
 #team-row {
-    background-color: rgba(255, 255, 255, 0.6);
-        font-size: 22px;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-size: 22px;
   font-family: Arial Narrow, Arial, sans-serif;
-    font-weight: bold;
+  font-weight: bold;
   color: #000000;
+
 }
 
 #team-row:hover {
-    background-color: rgba(0, 0, 0, 0.6);
     color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+div.driver-stat-cell {
+    margin-top: 15%;
+    margin-bottom: 5%;
+}
+
+.highlight-driver {
+  margin: 20px;
+  box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.75);
+  font-size: 55px;
+  font-family: Arial Narrow, Arial, sans-serif;
+  color: #000000;
+}
+
+#driver-race-table {
+  margin: 20px;
+  box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.75);
+  font-size: 24px;
+  font-family: Arial Narrow, Arial, sans-serif;
+  color: #000000;
+}
+
+#driver-race-table td, #driver-race-table th {
+    border-bottom: 1px solid rgba(211, 211, 211, 0.95);
+    padding: 5px 10px;
+}
+
+#driver-race-table tr:hover {
+    background-color: rgba(213, 213, 213, 0.6);
+}
+
+#driver-race-table td {
+    font-size: 20px;
+}
+
+#driver-race-table th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-color: rgba(234, 234, 234, 0.73);
 }

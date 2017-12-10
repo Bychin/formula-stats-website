@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Race, Event, Driver, Team, MostSuccessfulDrivers, MostSuccessfulTeams
+from .models import *
 
 
 #class HomeView(generic.ListView):
@@ -23,7 +23,10 @@ def drivers(request):
 def driver_profile(request, driver_name):
     driver_name = str(driver_name)   # sergio-perez
     true_name = ' '.join(driver_name.split('-')).title()  # Sergio Perez
-    return render(request, 'driver_profile.html', {'driver_info': Driver.objects.filter(name=true_name).all(), })
+    return render(request, 'driver_profile.html', {'driver_info': Driver.objects.filter(name=true_name)[0],
+                                                   'driver_results': DriverRaces.objects.filter(driver_id__name=true_name).order_by('id').all(),
+                                                   'team_drivers': TeamDrivers.objects.filter(name=true_name).order_by('-amount').all(),
+                                                   })
 
 
 def teams(request):
@@ -33,10 +36,12 @@ def teams(request):
 def team_profile(request, team_name):
     driver_name = str(team_name)  # red-bull-racing
     true_name = ' '.join(driver_name.split('-')).title()  # Red Bull Racing
-    print(true_name)
-    return render(request, 'team_profile.html', {'team_info': Team.objects.filter(name=true_name).all(), })
+    return render(request, 'team_profile.html', {'team_info': Team.objects.filter(name=true_name)[0],
+                                                 'driver_results': DriverRaces.objects.filter(team=true_name).order_by('id').all(),
+                                                 'team_drivers': TeamDrivers.objects.filter(team=true_name).order_by('-amount').all(),
+                                                 })
 
 
 def stats(request):
     return render(request, 'stats.html', {'driver_stats': MostSuccessfulDrivers.objects.order_by('-podiums').all(),
-                                          'team_stats':  MostSuccessfulTeams.objects.order_by('-podiums').all()})
+                                          'team_stats':   MostSuccessfulTeams.objects.order_by('-podiums').all()})
